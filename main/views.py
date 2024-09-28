@@ -13,3 +13,11 @@ def profiles(request):
 	else:
 		messages.warning(request, ('You are not logged in!'))
 		return redirect('home')
+
+def profile(request, id):
+	if request.user.is_authenticated:
+		profile = Profile.objects.get(user_id=id)
+		return render(request, 'main/profile.html', {'profile': profile})
+	else:
+		messages.warning(request, ('You are not logged in!'))
+		return redirect('home')

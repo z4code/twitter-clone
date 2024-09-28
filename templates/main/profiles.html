@@ -4,8 +4,9 @@
 {% block title %}Profiles{% endblock %}
 
 {% block content %}
-	<h1>Profiles</h1>
 	{% if profiles %}
+		<h1>Profiles</h1>
+		<p class="lead">Profiles of all users on the site.</p>
 		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
 			{% for profile in profiles %}
 			    <div class="col">
@@ -17,7 +18,7 @@
 			            </div>
 			            <div class="card-footer d-flex align-items-center justify-content-between">
 						    <small class="text-body-secondary">{{ profile.joined_at|date:"M d, Y" }}</small>
-						    <a class="btn btn-sm btn-primary" href="#">View</a>
+						    <a class="btn btn-sm btn-primary" href="{% url 'profile' profile.id %}">View</a>
 						</div>
 			        </div>
 			    </div>

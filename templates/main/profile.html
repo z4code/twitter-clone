@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+	{% if profile %}
+		<h1>{{ profile.user.username }}'s profile!</h1>
+		<div class="row">
+			<div class="col-md-8"></div>
+			<div class="col-md-4">
+				<h3>Followings:</h3>
+				<div class="list-group list-group-flush">
+					{% for following in profile.follows.all %}
+						<a class="list-group-item list-group-item-action" href="{% url 'profile' following.profile.id %}">@{{ following }}</a>
+					{% endfor %}
+				</div>
+				<hr>
+				<h3>Followers:</h3>
+				<div class="list-group list-group-flush">
+					{% for following in profile.followed_by.all %}
+						<a class="list-group-item list-group-item-action" href="{% url 'profile' following.profile.id %}">@{{ following }}</a>
+					{% endfor %}
+				</div>
+			</div>
+		</div>
+	{% endif %}
+{% endblock %}
