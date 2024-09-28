@@ -5,6 +5,7 @@ from django.db.models.signals import post_save
 class Profile(models.Model):
 	user = models.OneToOneField(User, on_delete=models.CASCADE)
 	follows = models.ManyToManyField(User, related_name='followed_by', symmetrical=False, blank=True)
+	joined_at = models.DateTimeField(User, auto_now_add=True)
 
 	def __str__(self):
 		return self.user.username

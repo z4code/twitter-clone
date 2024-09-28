@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Profiles{% endblock %}
+
+{% block content %}
+	<h1>Profiles</h1>
+	{% if profiles %}
+		<div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-4">
+			{% for profile in profiles %}
+			    <div class="col">
+			        <div class="card h-100">
+			            <img src="{% static './images/default-profile-pic.png' %}" class="card-img-top" alt="...">
+			            <div class="card-body">
+			                <h5 class="card-title">{{ profile.user.username }}</h5>
+			                <p class="card-text"></p>
+			            </div>
+			            <div class="card-footer d-flex align-items-center justify-content-between">
+						    <small class="text-body-secondary">{{ profile.joined_at|date:"M d, Y" }}</small>
+						    <a class="btn btn-sm btn-primary" href="#">View</a>
+						</div>
+			        </div>
+			    </div>
+		    {% endfor %}
+		</div>
+	{% endif %}
+{% endblock %}
